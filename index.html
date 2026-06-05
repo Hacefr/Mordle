@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <!-- ☠️ NULLSCAPE-STYLE DEATH SCREEN (HIDDEN BY DEFAULT) -->
+    <!-- ☠️ NULLSCAPE-STYLE DEATH SCREEN -->
     <div id="death-screen" class="screen-overlay hidden">
         <div class="death-box">
             <h1 class="death-title glitch-text">RUN TERMINATED</h1>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <!-- 🪙 MRD COIN INTERMISSION SHOP SCREEN (HIDDEN BY DEFAULT) -->
+    <!-- 🪙 MRD COIN INTERMISSION SHOP SCREEN -->
     <div id="shop-screen" class="screen-overlay hidden">
         <div class="shop-box">
             <h1 class="shop-title">MATRIX MARKETPLACE</h1>
@@ -86,7 +86,7 @@
             </div>
         </header>
 
-        <!-- ANAGRAM LETTER ANCHOR BAR (Shows the letters you need to unscramble) -->
+        <!-- ANAGRAM LETTER GIVENS BAR -->
         <div class="scramble-container">
             <div class="hud-label">LETTERS GIVEN:</div>
             <div id="scramble-letters" class="scramble-display">-----</div>
@@ -94,7 +94,6 @@
 
         <!-- ACTIVE ENTITY HUD WARNER -->
         <div id="active-boss-hud" class="boss-banner hidden">
-            <!-- SYMBOL mini console indicator will inject here dynamically -->
             <img src="./assets/sprites/symbol.png" class="mini-boss-sprite" id="symbol-hud-icon" alt="">
             <span id="boss-warning-text">SYMBOL INTERFERENCE DETECTED</span>
         </div>
@@ -141,9 +140,10 @@
         </div>
     </div>
 
-    <!-- CORE SCRIPTS -->
+    <!-- CORE SCRIPTS MODULES ARRAYS -->
     <script type="module" src="shop.js"></script>
     <script type="module" src="entities.js"></script>
+    <script type="module" src="input.js"></script>
     <script type="module" src="chaos.js"></script>
 </body>
 </html>
