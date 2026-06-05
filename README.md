@@ -17,6 +17,8 @@ Most, if not all, are subject to change.
 
 - Old shop music
 
+### Old changelog (previous updates)
+
 ## [1.0] - 6-4-2026
 
 ## 🛠️ Built With
