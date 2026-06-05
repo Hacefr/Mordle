@@ -52,19 +52,9 @@ cd your-repo-name
 npm install
 ```
 
-## 💻 Usage
+## Credits
 
-Provide a quick example of how to run or use the project.
-```bash
-npm start
-```
+### Sounds
 
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## 👥 Contact
-
-Your Name - [@your_twitter](https://twitter.com) - email@example.com
-
-Project Link: [https://github.com](https://github.com)
+The sounds used were all gathered from [Pixabay](https://pixabay.com/sound-effects/
+)
