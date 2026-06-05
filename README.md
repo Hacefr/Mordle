@@ -7,25 +7,15 @@ Most, if not all, are subject to change.
 
 ### Added
 
-- v1.1 Brazilian Portuguese translation.
-- v1.1 German Translation
-- v1.1 Spanish translation.
-- v1.1 Italian translation.
-- v1.1 Polish translation.
-- v1.1 Ukrainian translation.
+- v1.0 Finally published the game
 
 ### Changed
 
-- Use frontmatter title & description in each language version template
-- Replace broken OpenGraph image with an appropriately-sized Keep a Changelog 
-  image that will render properly (although in English for all languages)
-- Fix OpenGraph title & description for all languages so the title and 
-description when links are shared are language-appropriate
+- Replaced entity placeholders
 
 ### Removed
 
-- Trademark sign previously shown after the project description in version 
-0.3.0
+- Old shop music
 
 ## [1.1.1] - 2023-03-05
 
