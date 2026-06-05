@@ -20,8 +20,7 @@ Most, if not all, are subject to change.
 ### Old changelog (previous updates)
 
 - Nothing here...
-
-## [1.0] - 6-4-2026
+[1.0] - 6-4-2026
 
 ## Credits
 
