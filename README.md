@@ -57,4 +57,4 @@ npm install
 ### Sounds
 
 The sounds used were all gathered from [Pixabay](https://pixabay.com/sound-effects/
-)
+) All credits go to their respective creators
