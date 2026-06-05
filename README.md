@@ -59,13 +59,6 @@ npm install
 The sounds used were all gathered from [Pixabay](https://pixabay.com/sound-effects/
 ) All credits go to their respective owners
 
-## 👥 Contributors
+### Character designs
 
-Thank you to all the amazing people who have contributed to this project!
-
-<a href="https://github.com">
-  <img src="https://contrib.rocks" alt="Contributors Image Grid" />
-</a>
-
-Made with [contrib.rocks](https://contrib.rocks).
-
+[Hace](https://github.com/Hacefr)
