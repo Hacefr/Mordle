@@ -17,7 +17,7 @@ Most, if not all, are subject to change.
 
 - Old shop music
 
-## [1.1.1] - 2023-03-05
+## [1.0] - 6-4-2026
 
 ## 🛠️ Built With
 
