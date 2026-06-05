@@ -1,8 +1,9 @@
 # Mordle: ALPHA
 
-A Wordle-like clone with my own twist on it! its very early in development and has a lot of placeholders
+A Wordle-like clone with my own twist on it! It's very early in development and has a lot of placeholders
+Most, if not all, are subject to change.
 
-## 🚀 Features
+## Current version and changelog
 
 * **Feature 1** - Brief description of a key functionality.
 * **Feature 2** - Brief description of a key functionality.
