@@ -21,9 +21,9 @@ Most, if not all, are subject to change.
 
 - Nothing here...
 
-### [1.0] - 6-4-2026
+## [1.0] - 6-4-2026
 
-## Credits
+### Credits
 
 ### Sounds
 
