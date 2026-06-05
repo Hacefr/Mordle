@@ -3,11 +3,9 @@
 A Wordle-like clone with my own twist on it! It's very early in development and has a lot of placeholders
 Most, if not all, are subject to change.
 
-## Current version and changelog
+## 📋 Changelog
 
-* **Feature 1** - Brief description of a key functionality.
-* **Feature 2** - Brief description of a key functionality.
-* **Feature 3** - Brief description of a key functionality.
+All notable changes to this project will be documented in this section. We follow the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) guidelines.
 
 ## 🛠️ Built With
 
