@@ -1,6 +1,6 @@
-# Project Title
+# Mordle: ALPHA
 
-A short, one-sentence description of what this project does and who it is for.
+A Wordle-like clone with my own twist on it! its very early in development and has a lot of placeholders
 
 ## 🚀 Features
 
