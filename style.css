@@ -20,10 +20,10 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 .danger-btn { background-color: #c0392b; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; }
 .back-btn { margin-top: 20px; background-color: #3a3a3c; }
 
-/* 🛡️ ARENA STRUCTURAL FIXES */
-.split-viewport { display: flex; width: 100vw; height: 100vh; background-color: #121213; justify-content: flex-start; align-items: stretch; position: relative; z-index: 10; }
-.boss-monitor-panel { width: 260px; min-width: 260px; max-width: 260px; height: 100vh; background-color: #08050e; border-right: 2px solid #3a3a3c; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-.arena-gameplay-panel { display: flex; flex-direction: column; justify-content: space-between; align-items: center; flex-grow: 1; height: 100vh; padding: 30px 20px; max-width: 480px; margin: 0 auto; }
+/* 🛡️ REPAIRED TWO-COLUMN STRICT GRID VIEWPORT */
+.split-viewport { display: grid; grid-template-columns: 260px 1fr; width: 100vw; height: 100vh; background-color: #121213; position: relative; z-index: 10; }
+.boss-monitor-panel { width: 260px; height: 100vh; background-color: #08050e; border-right: 2px solid #3a3a3c; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+.arena-gameplay-panel { display: flex; flex-direction: column; justify-content: space-between; align-items: center; width: 100%; max-width: 440px; height: 100vh; padding: 25px 10px; margin: 0 auto; }
 
 .hud-header { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #3a3a3c; padding-bottom: 8px; }
 .hud-label { font-size: 0.65rem; font-weight: bold; color: #818384; letter-spacing: 0.5px; text-align: center; }
@@ -35,8 +35,7 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 .scramble-container { width: 100%; text-align: center; margin: 8px 0; }
 .scramble-display { font-size: 1.8rem; font-weight: bold; letter-spacing: 6px; color: #fff; text-transform: uppercase; }
 
-/* 🎯 BOARD AND GRID LINES REPAIR */
-#board-container { display: grid; grid-template-rows: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 330px; aspect-ratio: 5 / 3; margin: 15px auto; }
+#board-container { display: grid; grid-template-rows: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 320px; aspect-ratio: 5 / 3; margin: 15px auto; }
 .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .tile { border: 2px solid #3a3a3c; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; font-weight: bold; text-transform: uppercase; background-color: #121213; aspect-ratio: 1 / 1; user-select: none; color: #fff; }
 .tile.filled { border-color: #565758; }
@@ -77,4 +76,4 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 .screen-shake { animation: shakeMatrix 0.15s infinite; }
 @keyframes shakeMatrix { 0% { transform: translate(1px, 1px); } 40% { transform: translate(-2px, 0px); } 80% { transform: translate(1px, -1px); } }
 .monitor-sweeper-alert { background-color: #1a020a !important; border-right: 3px double #ff0055 !important; }
-@media (max-width: 768px) { .split-viewport { flex-direction: column; } .boss-monitor-panel { width: 100vw; height: 140px; border-right: none; border-bottom: 2px solid #3a3a3c; } .monitor-content { height: 100%; padding: 5px; } .portrait-bounding-box { width: 80px; height: 80px; } .arena-gameplay-panel { height: calc(100vh - 140px); } }
+@media (max-width: 768px) { .split-viewport { grid-template-columns: 1fr; grid-template-rows: 140px 1fr; } .boss-monitor-panel { width: 100vw; height: 140px; border-right: none; border-bottom: 2px solid #3a3a3c; } .monitor-content { height: 100%; padding: 5px; } .portrait-bounding-box { width: 80px; height: 80px; } .arena-gameplay-panel { height: calc(100vh - 140px); } }
