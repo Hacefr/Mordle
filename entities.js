@@ -1,10 +1,21 @@
 import { gameState, adjustTimerPool } from './chaos2.js';
 import { isItemActive } from './shop.js';
 
-const sfxStatic = new Audio('./assets/audio/static.mp3');
-const sfxAlarm = new Audio('./assets/audio/alarm.mp3');
-const sfxGlitch = new Audio('./assets/audio/glitch.mp3');
-sfxStatic.loop = true;
+// --- AIRTIGHT AUDIO DECLARATION WRAPPER ---
+let sfxStatic, sfxAlarm, sfxGlitch;
+
+try {
+    sfxStatic = new Audio('./assets/audio/static.mp3');
+    sfxStatic.loop = true;
+} catch (e) { console.warn("Static sound omitted."); }
+
+try {
+    sfxAlarm = new Audio('./assets/audio/alarm.mp3');
+} catch (e) { console.warn("Alarm sound omitted."); }
+
+try {
+    sfxGlitch = new Audio('./assets/audio/glitch.mp3');
+} catch (e) { console.warn("Glitch sound omitted."); }
 
 let symbolActive = false;
 let sweeperWatching = false;
@@ -15,7 +26,6 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 let monitorPanel, monitorContent, monitorPortrait, monitorName;
 
-// Cache the new portrait elements safely
 function cacheMonitorElements() {
     monitorPanel = document.getElementById('left-monitor');
     monitorContent = document.getElementById('monitor-transmission');
@@ -29,14 +39,15 @@ export function resetKeyboardLayout() {
     symbolActive = false;
     sweeperWatching = false;
     
-    // Hide the portrait transmission box cleanly
     if (monitorContent) monitorContent.classList.add('hidden');
     if (monitorPanel) monitorPanel.className = "boss-monitor-panel";
     document.getElementById('active-boss-hud')?.classList.add('hidden');
     
     try {
-        sfxStatic.pause();
-        sfxStatic.currentTime = 0;
+        if (sfxStatic && !sfxStatic.paused) {
+            sfxStatic.pause();
+            sfxStatic.currentTime = 0;
+        }
     } catch(e) {}
 
     initializeWaveHazards();
@@ -65,7 +76,7 @@ function initializeWaveHazards() {
     }, triggerIntervalMs);
 }
 
-// --- REWORKED SYMBOL PORTRAIT ATTACK ---
+// --- SYMBOL PORTRAIT ATTACK RUNNER ---
 function executeSymbolStrike() {
     if (symbolActive) return;
     symbolActive = true;
@@ -75,13 +86,13 @@ function executeSymbolStrike() {
         symbolScrambleMap[alphabet[i]] = shuffled[i];
     }
 
-    // Trigger sound asset
     try {
-        sfxGlitch.currentTime = 0;
-        sfxGlitch.play();
+        if (sfxGlitch) {
+            sfxGlitch.currentTime = 0;
+            sfxGlitch.play().catch(() => {});
+        }
     } catch(e) {}
 
-    // Pop the portrait live on the left panel side
     if (monitorPortrait) monitorPortrait.src = "./assets/sprites/symbol.png";
     if (monitorName) monitorName.textContent = "SYMBOL";
     if (monitorContent) monitorContent.classList.remove('hidden');
@@ -107,17 +118,14 @@ export function triggerSymbolScramble(pressedChar) {
 
 export function isSymbolActive() { return symbolActive; }
 
-// --- REWORKED SWEEPER PORTRAIT ATTACK ---
+// --- SWEEPER PORTRAIT ATTACK RUNNER ---
 function executeSweeperObservation() {
     if (sweeperWatching) return;
     sweeperWatching = true;
 
-    // Pop the custom dripping portrait asset on the left panel side
     if (monitorPortrait) monitorPortrait.src = "./assets/sprites/sweeper.png";
     if (monitorName) monitorName.textContent = "SWEEPER";
     if (monitorContent) monitorContent.classList.remove('hidden');
-    
-    // Add red alert flashing theme variant to the panel wrapper frame
     if (monitorPanel) monitorPanel.className = "boss-monitor-panel monitor-sweeper-alert";
 
     const banner = document.getElementById('active-boss-hud');
@@ -126,8 +134,10 @@ function executeSweeperObservation() {
     if (bText) bText.textContent = "👁️ SWEEPER SCANNING LIVE! DO NOT TYPE!";
 
     try {
-        sfxStatic.currentTime = 0;
-        sfxStatic.play();
+        if (sfxStatic) {
+            sfxStatic.currentTime = 0;
+            sfxStatic.play().catch(() => {});
+        }
     } catch(e) {}
 
     setTimeout(() => {
@@ -144,8 +154,10 @@ function cleanupSweeperOverlay() {
     if (banner) banner.classList.add('hidden');
 
     try {
-        sfxStatic.pause();
-        sfxStatic.currentTime = 0;
+        if (sfxStatic) {
+            sfxStatic.pause();
+            sfxStatic.currentTime = 0;
+        }
     } catch(e) {}
 }
 
@@ -153,8 +165,10 @@ export function verifyInputLegality() {
     if (sweeperWatching) {
         adjustTimerPool(-15);
         try {
-            sfxAlarm.currentTime = 0;
-            sfxAlarm.play();
+            if (sfxAlarm) {
+                sfxAlarm.currentTime = 0;
+                sfxAlarm.play().catch(() => {});
+            }
         } catch(e) {}
         return false; 
     }
