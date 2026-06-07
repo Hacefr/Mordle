@@ -10,22 +10,111 @@
 </head>
 <body>
     <div id="toast-container"></div>
-    <div id="mordle-root"></div>
 
-    <script type="module">
-        async function loadStructure() {
-            const root = document.getElementById('mordle-root');
-            const menu = await fetch('./menu.html').then(r => r.text());
-            const modals = await fetch('./modals.html').then(r => r.text());
-            const arena = await fetch('./arena.html').then(r => r.text());
-            root.innerHTML = menu + modals + arena;
-            
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.src = 'chaos.js';
-            document.body.appendChild(script);
-        }
-        loadStructure();
-    </script>
+    <!-- 📢 DEVELOPMENT ALPHA WARNER POPUP -->
+    <div id="alpha-popup" class="screen-overlay">
+        <div class="popup-box">
+            <h2>⚠️ ALPHA NOTICE</h2>
+            <div class="popup-scroll">
+                <p>Welcome to <strong>Mordle: Slight Type</strong>!</p>
+                <p>Please note that this game is actively in development. Mechanics, difficulty values, sound effects, balance loops, and visual assets are highly subject to change in upcoming repository pushes.</p>
+                <p>Thank you for testing the alpha build!</p>
+            </div>
+            <button id="btn-close-alpha" class="action-btn">Acknowledge & Proceed</button>
+        </div>
+    </div>
+
+    <!-- 🏠 MAIN MENU LAYER -->
+    <div id="main-menu" class="menu-container hidden">
+        <h1 class="menu-title">
+            <span class="title-tile correct">S</span><span class="title-tile correct">L</span><span class="title-tile present">I</span><span class="title-tile present">G</span><span class="title-tile absent">H</span><span class="title-tile absent">T</span>
+        </h1>
+        <p class="menu-subtitle">TYPE BY SURVIVAL PROTOCOL</p>
+        <div class="menu-buttons">
+            <button class="menu-btn" id="btn-start-run">Play Normal Run</button>
+            <button class="menu-btn disabled" id="btn-legacy-run">Play Legacy Run <span class="badge">Legacy ? Mode</span></button>
+            <button class="menu-btn" id="btn-index">Entity Index</button>
+            <button class="menu-btn" id="btn-settings">Settings</button>
+        </div>
+    </div>
+
+    <!-- 📖 ENTITY INDEX CODEX -->
+    <div id="index-screen" class="menu-container hidden">
+        <h2>ENTITY INDEX</h2>
+        <div class="codex-grid">
+            <div class="codex-card"><div class="codex-thumb symbol-bg"></div><h3>SYMBOL</h3><p>Corrupts target terminal matrices. Scrambles keyboard inputs under pressure.</p></div>
+            <div class="codex-card"><div class="codex-thumb sweeper-bg"></div><h3>SWEEPER</h3><p>The observant void entity. Manifests on terminal monitors. Typing while active inflicts extreme time penalty metrics.</p></div>
+            <div class="codex-card locked"><div class="codex-thumb secret-bg"></div><h3>???</h3><p>Undetected visual signatures. Coming in future update patches.</p></div>
+        </div>
+        <button class="menu-btn back-btn">Main Menu</button>
+    </div>
+
+    <!-- SETTINGS MODULE PANEL -->
+    <div id="settings-screen" class="menu-container hidden">
+        <h2>SETTINGS</h2>
+        <div class="setting-row"><label for="easter-egg-input">Security Key:</label><input type="text" id="easter-egg-input" placeholder="Enter override key..."></div>
+        <div class="setting-row"><button id="btn-reset-data" class="danger-btn">Purge Player Data</button></div>
+        <button class="menu-btn back-btn">Main Menu</button>
+    </div>
+
+    <!-- 🪙 MATRIX MARKETPLACE SHOP OVERLAY -->
+    <div id="shop-screen" class="screen-overlay hidden">
+        <div class="shop-box">
+            <h1 class="shop-title">MATRIX MARKETPLACE</h1>
+            <p class="shop-subtitle">Spend your MRD Coins before the next wave begins.</p>
+            <div class="wallet-display">Wallet: <span id="shop-wallet">0</span> MRD</div>
+            <div class="shop-items">
+                <div class="shop-card" id="buy-time"><h3>Time Stabilizer (+30s)</h3><p>Inject critical backup seconds into the countdown clock.</p><button class="shop-btn">Cost: 10 MRD</button></div>
+                <div class="shop-card" id="buy-symbol-shield"><h3>Anti-Symbol Firewall</h3><p>Blocks SYMBOL from shuffling keys next round.</p><button class="shop-btn">Cost: 15 MRD</button></div>
+                <div class="shop-card" id="buy-sweeper-radar"><h3>Sweeper Decompiler</h3><p>Disables the Operator Sweeper attack next round.</p><button class="shop-btn">Cost: 15 MRD</button></div>
+            </div>
+            <button id="btn-next-level" class="action-btn">Begin Next Wave</button>
+        </div>
+    </div>
+
+    <!-- ☠️ RUN TERMINATED DEATH SCREEN OVERLAY -->
+    <div id="death-screen" class="screen-overlay hidden">
+        <div class="death-box">
+            <h1 class="death-title">RUN TERMINATED</h1>
+            <p class="death-subtitle">The terminal system has completely collapsed.</p>
+            <div class="death-stats">
+                <div class="stat-line">Max Level Reached: <span id="final-level">0</span></div>
+                <div class="stat-line">Total Wins: <span id="final-wins">0</span></div>
+                <div class="stat-line">Total Coins Earned: <span id="final-coins-total">0</span></div>
+            </div>
+            <button id="btn-restart" class="action-btn">Initialize Respawn</button>
+            <button id="btn-quit" class="action-btn return-btn">Return to Menu</button>
+        </div>
+    </div>
+
+    <!-- 🕹️ SPLIT SCREEN COMBAT ARENA GRAPHIC HUB LAYOUT -->
+    <div class="split-viewport hidden" id="game-arena">
+        <div class="boss-monitor-panel" id="left-monitor">
+            <div class="monitor-static-overlay"></div>
+            <div class="monitor-content hidden" id="monitor-transmission">
+                <div class="monitor-header">ANOMALY DETECTED</div>
+                <div class="portrait-bounding-box"><img src="" id="monitor-portrait" alt="TRANSMISSION"></div>
+                ENTITY NAME</div>
+            </div>
+        </div>
+        <div class="arena-gameplay-panel">
+            <header class="hud-header">
+                <div class="hud-left"><div class="hud-label">WAVE</div><div id="hud-level" class="hud-value">01</div></div>
+                <div class="hud-center"><div class="hud-label">TIMER</div><div id="hud-timer" class="hud-value timer-normal">02:00</div></div>
+                <div class="hud-right"><div class="hud-label">WALLET</div><div id="hud-wallet" class="hud-value coin-text">000 MRD</div></div>
+            </header>
+            <div class="scramble-container"><div class="hud-label">LETTERS GIVEN:</div><div id="scramble-letters" class="scramble-display">-----</div></div>
+            <div id="active-boss-hud" class="boss-banner hidden"><span id="boss-warning-text">ANOMALY DETECTED</span></div>
+            <div id="board-container"></div>
+            <div id="keyboard-container">
+                <div class="keyboard-row"><button class="key" data-key="q">Q</button><button class="key" data-key="w">W</button><button class="key" data-key="e">E</button><button class="key" data-key="r">R</button><button class="key" data-key="t">T</button><button class="key" data-key="y">Y</button><button class="key" data-key="u">U</button><button class="key" data-key="i">I</button><button class="key" data-key="o">O</button><button class="key" data-key="p">P</button></div>
+                <div class="keyboard-row"><button class="key" data-key="a">A</button><button class="key" data-key="s">S</button><button class="key" data-key="d">D</button><button class="key" data-key="f">F</button><button class="key" data-key="g">G</button><button class="key" data-key="h">H</button><button class="key" data-key="j">J</button><button class="key" data-key="k">K</button><button class="key" data-key="l">L</button></div>
+                <div class="keyboard-row"><button class="key key-wide" data-key="Enter">ENTER</button><button class="key" data-key="z">Z</button><button class="key" data-key="x">X</button><button class="key" data-key="c">C</button><button class="key" data-key="v">V</button><button class="key" data-key="b">B</button><button class="key" data-key="n">N</button><button class="key" data-key="m">M</button><button class="key key-wide" data-key="Backspace">⌫</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE ENTRY SCRIPTS -->
+    <script type="module" src="chaos.js"></script>
 </body>
 </html>
