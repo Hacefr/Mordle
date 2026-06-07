@@ -20,10 +20,9 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 .danger-btn { background-color: #c0392b; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; }
 .back-btn { margin-top: 20px; background-color: #3a3a3c; }
 
-.split-viewport { display: grid; grid-template-columns: 260px 1fr; width: 100vw; height: 100vh; background-color: #121213; position: relative; z-index: 10; }
-.boss-monitor-panel { width: 260px; height: 100vh; background-color: #08050e; border-right: 2px solid #3a3a3c; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-.arena-gameplay-panel { display: flex; flex-direction: column; justify-content: space-between; align-items: center; width: 100%; max-width: 440px; height: 100vh; padding: 25px 10px; margin: 0 auto; justify-self: center; }
-
+/* 🛡️ CENTRALIZED INTEGRATED ARENA VIEWPORT SHEET */
+.central-arena-viewport { display: flex; width: 100vw; height: 100vh; background-color: #121213; justify-content: center; align-items: center; position: relative; z-index: 10; }
+.arena-gameplay-panel { display: flex; flex-direction: column; justify-content: space-between; align-items: center; width: 100%; max-width: 440px; height: 100vh; padding: 25px 10px; position: relative; z-index: 20; }
 .hud-header { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #3a3a3c; padding-bottom: 8px; }
 .hud-label { font-size: 0.65rem; font-weight: bold; color: #818384; letter-spacing: 0.5px; text-align: center; }
 .hud-value { font-size: 1.2rem; font-weight: bold; text-align: center; }
@@ -33,7 +32,6 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 @keyframes beat { to { transform: scale(1.05); } }
 .scramble-container { width: 100%; text-align: center; margin: 8px 0; }
 .scramble-display { font-size: 1.8rem; font-weight: bold; letter-spacing: 6px; color: #fff; text-transform: uppercase; }
-
 #board-container { display: grid; grid-template-rows: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 320px; aspect-ratio: 5 / 3; margin: 15px auto; }
 .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .tile { border: 2px solid #3a3a3c; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; font-weight: bold; text-transform: uppercase; background-color: #121213; aspect-ratio: 1 / 1; user-select: none; color: #fff; }
@@ -41,7 +39,6 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 .tile.correct { background-color: #538d4e; border-color: #538d4e; }
 .tile.present { background-color: #b59f3b; border-color: #b59f3b; }
 .tile.absent { background-color: #3a3a3c; border-color: #3a3a3c; }
-
 #keyboard-container { width: 100%; display: flex; flex-direction: column; gap: 6px; margin-top: auto; }
 .keyboard-row { display: flex; justify-content: center; gap: 5px; width: 100%; }
 .key { background-color: #818384; color: #fff; border: none; border-radius: 4px; padding: 18px 2px; font-size: 0.9rem; font-weight: bold; cursor: pointer; flex: 1; text-align: center; text-transform: uppercase; }
@@ -49,18 +46,19 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 .key.correct { background-color: #538d4e; }
 .key.present { background-color: #b59f3b; }
 .key.absent { background-color: #3a3a3c; }
-
 #toast-container { position: fixed; top: 10%; left: 50%; transform: translateX(-50%); z-index: 2000; display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
 .toast { background-color: #fff; color: #000000; padding: 8px 16px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; }
 .toast.success { background-color: #538d4e; color: #fff; }
 .toast.error { background-color: #e74c3c; color: #fff; }
 
+/* 👁️ THE REWORKED FLOATING TRANSMISSION INTERFACE PORTAL */
+.floating-boss-monitor { position: absolute; left: 4%; top: 50%; transform: translateY(-50%); width: 220px; background-color: #08050e; border: 2px dashed #ff0055; border-radius: 6px; padding: 15px 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; z-index: 15; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
 .monitor-static-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px); opacity: 0.4; pointer-events: none; z-index: 25; }
-.monitor-content { display: flex; flex-direction: column; justify-content: space-between; align-items: center; width: 100%; height: 80%; padding: 20px 10px; z-index: 30; text-align: center; }
-.monitor-header { font-size: 0.85rem; font-weight: bold; color: #ff0055; letter-spacing: 2px; animation: pulseGlow 0.4s infinite alternate; }
-.portrait-bounding-box { width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; background-color: #020105; border: 2px solid #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.2); border-radius: 4px; padding: 10px; }
+.monitor-content { display: flex; flex-direction: column; justify-content: space-between; align-items: center; width: 100%; gap: 12px; z-index: 30; text-align: center; }
+.monitor-header { font-size: 0.8rem; font-weight: bold; color: #ff0055; letter-spacing: 1.5px; animation: pulseGlow 0.4s infinite alternate; }
+.portrait-bounding-box { width: 160px; height: 160px; display: flex; justify-content: center; align-items: center; background-color: #020105; border: 1px solid #ff0055; border-radius: 4px; padding: 5px; }
 .portrait-bounding-box img { max-width: 100%; max-height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
-.monitor-footer { font-size: 1.1rem; font-weight: 900; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
+.monitor-footer { font-size: 1rem; font-weight: bold; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
 .boss-banner { width: 100%; background-color: rgba(231, 76, 60, 0.15); border: 1px dashed #e74c3c; color: #e74c3c; padding: 8px; text-align: center; font-size: 0.8rem; font-weight: bold; border-radius: 4px; margin-bottom: 10px; }
 .codex-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; margin: 20px 0; }
 .codex-card { background-color: #272729; border: 1px solid #3a3a3c; border-radius: 6px; padding: 10px; text-align: center; }
@@ -74,5 +72,13 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 @keyframes pulseGlow { from { opacity: 0.4; } to { opacity: 1; } }
 .screen-shake { animation: shakeMatrix 0.15s infinite; }
 @keyframes shakeMatrix { 0% { transform: translate(1px, 1px); } 40% { transform: translate(-2px, 0px); } 80% { transform: translate(1px, -1px); } }
-.monitor-sweeper-alert { background-color: #1a020a !important; border-right: 3px double #ff0055 !important; }
-@media (max-width: 768px) { .split-viewport { grid-template-columns: 1fr; grid-template-rows: 140px 1fr; } .boss-monitor-panel { width: 100vw; height: 140px; border-right: none; border-bottom: 2px solid #3a3a3c; } .monitor-content { height: 100%; padding: 5px; } .portrait-bounding-box { width: 80px; height: 80px; } .arena-gameplay-panel { height: calc(100vh - 140px); } }
+.monitor-sweeper-alert { background-color: #1a020a !important; border: 2px solid #ff0055 !important; }
+
+/* 📱 Responsive Mobile Auto-Stack adjustment rules */
+@media (max-width: 1024px) {
+    .central-arena-viewport { flex-direction: column; justify-content: flex-start; padding-top: 10px; }
+    .floating-boss-monitor { position: static; transform: none; width: 100%; max-width: 440px; height: auto; padding: 10px; margin-bottom: 10px; border-right: 2px dashed #ff0055; }
+    .monitor-content { flex-direction: row; gap: 15px; }
+    .portrait-bounding-box { width: 60px; height: 60px; }
+    .arena-gameplay-panel { height: calc(100vh - 120px); padding: 5px 10px; }
+}
