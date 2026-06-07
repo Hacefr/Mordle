@@ -22,39 +22,6 @@
         </div>
     </div>
 
-    <!-- 🏠 MAIN MENU LAYER -->
-    <div id="main-menu" class="menu-container hidden">
-        <h1 class="menu-title">
-            <span class="title-tile correct">S</span><span class="title-tile correct">L</span><span class="title-tile present">I</span><span class="title-tile present">G</span><span class="title-tile absent">H</span><span class="title-tile absent">T</span>
-        </h1>
-        <p class="menu-subtitle">TYPE BY SURVIVAL PROTOCOL</p>
-        <div class="menu-buttons">
-            <button class="menu-btn" id="btn-start-run">Play Normal Run</button>
-            <button class="menu-btn disabled" id="btn-legacy-run">Play Legacy Run <span class="badge">Legacy Mode</span></button>
-            <button class="menu-btn" id="btn-index">Entity Index</button>
-            <button class="menu-btn" id="btn-settings">Settings</button>
-        </div>
-    </div>
-
-    <!-- 📖 ENTITY INDEX CODEX -->
-    <div id="index-screen" class="menu-container hidden">
-        <h2>ENTITY INDEX</h2>
-        <div class="codex-grid">
-            <div class="codex-card"><div class="codex-thumb symbol-bg"></div><h3>SYMBOL</h3><p>Corrupts target terminal matrices. Scrambles keyboard inputs under pressure.</p></div>
-            <div class="codex-card"><div class="codex-thumb sweeper-bg"></div><h3>SWEEPER</h3><p>The observant void entity. Manifests on terminal monitors. Typing while active inflicts extreme time penalty metrics.</p></div>
-            <div class="codex-card locked"><div class="codex-thumb secret-bg"></div><h3>???</h3><p>Undetected visual signatures. Coming in future update patches.</p></div>
-        </div>
-        <button class="menu-btn back-btn">Main Menu</button>
-    </div>
-
-    <!-- SETTINGS MODULE PANEL -->
-    <div id="settings-screen" class="menu-container hidden">
-        <h2>SETTINGS</h2>
-        <div class="setting-row"><label for="easter-egg-input">Security Key:</label><input type="text" id="easter-egg-input" placeholder="Enter override key..."></div>
-        <div class="setting-row"><button id="btn-reset-data" class="danger-btn">Purge Player Data</button></div>
-        <button class="menu-btn back-btn">Main Menu</button>
-    </div>
-
     <!-- 🪙 MATRIX MARKETPLACE SHOP OVERLAY -->
     <div id="shop-screen" class="screen-overlay hidden">
         <div class="shop-box">
@@ -85,10 +52,46 @@
         </div>
     </div>
 
+    <!-- 🏠 CENTRAL INTERACTIVE CORE NAVIGATION HUB DECK WRAPPER -->
+    <div id="menu-deck-wrapper" class="menu-canvas-deck hidden">
+        
+        <!-- MAIN MENU LAYER -->
+        <div id="main-menu" class="menu-container">
+            <h1 class="menu-title">
+                <span class="title-tile correct">S</span><span class="title-tile correct">L</span><span class="title-tile present">I</span><span class="title-tile present">G</span><span class="title-tile absent">H</span><span class="title-tile absent">T</span>
+            </h1>
+            <p class="menu-subtitle">TYPE BY SURVIVAL PROTOCOL</p>
+            <div class="menu-buttons">
+                <button class="menu-btn" id="btn-start-run">Play Normal Run</button>
+                <button class="menu-btn disabled" id="btn-legacy-run">Play Legacy Run <span class="badge">Legacy Mode</span></button>
+                <button class="menu-btn" id="btn-index">Entity Index</button>
+                <button class="menu-btn" id="btn-settings">Settings</button>
+            </div>
+        </div>
+
+        <!-- 📖 ENTITY INDEX CODEX -->
+        <div id="index-screen" class="menu-container hidden">
+            <h2>ENTITY INDEX</h2>
+            <div class="codex-grid">
+                <div class="codex-card"><div class="codex-thumb symbol-bg"></div><h3>SYMBOL</h3><p>Corrupts target terminal matrices. Scrambles keyboard inputs under pressure.</p></div>
+                <div class="codex-card"><div class="codex-thumb sweeper-bg"></div><h3>SWEEPER</h3><p>The observant void entity. Manifests on terminal monitors. Typing while active inflicts extreme time penalty metrics.</p></div>
+            </div>
+            <button class="menu-btn back-btn">Main Menu</button>
+        </div>
+
+        <!-- SETTINGS PANEL -->
+        <div id="settings-screen" class="menu-container hidden">
+            <h2>SETTINGS</h2>
+            <div class="setting-row"><label for="easter-egg-input">Security Key:</label><input type="text" id="easter-egg-input" placeholder="Enter override key..."></div>
+            <div class="setting-row"><button id="btn-reset-data" class="danger-btn">Purge Player Data</button></div>
+            <button class="menu-btn back-btn">Main Menu</button>
+        </div>
+    </div>
+
     <!-- 🕹️ THE CENTRALIZED FULLVIEW SURVIVAL STAGE -->
     <div class="central-arena-viewport hidden" id="game-arena">
         
-        <!-- 👁️ THE FLOATING INTEGRATED ANOMALY PORTAL (Sits in the left void space naturally) -->
+        <!-- 👁️ THE FLOATING INTEGRATED ANOMALY PORTAL -->
         <div class="floating-boss-monitor" id="left-monitor">
             <div class="monitor-static-overlay"></div>
             <div class="monitor-content hidden" id="monitor-transmission">
@@ -118,7 +121,7 @@
         </div>
     </div>
 
-    <!-- MAIN CONTROL CORE MODULES -->
+    <!-- MAIN CONTROL CORE SCRIPTS -->
     <script type="module" src="chaos.js"></script>
 </body>
 </html>
