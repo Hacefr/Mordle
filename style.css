@@ -20,10 +20,9 @@ input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color
 .danger-btn { background-color: #c0392b; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; }
 .back-btn { margin-top: 20px; background-color: #3a3a3c; }
 
-/* 🛡️ REPAIRED TWO-COLUMN STRICT GRID VIEWPORT */
 .split-viewport { display: grid; grid-template-columns: 260px 1fr; width: 100vw; height: 100vh; background-color: #121213; position: relative; z-index: 10; }
 .boss-monitor-panel { width: 260px; height: 100vh; background-color: #08050e; border-right: 2px solid #3a3a3c; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-.arena-gameplay-panel { display: flex; flex-direction: column; justify-content: space-between; align-items: center; width: 100%; max-width: 440px; height: 100vh; padding: 25px 10px; margin: 0 auto; }
+.arena-gameplay-panel { display: flex; flex-direction: column; justify-content: space-between; align-items: center; width: 100%; max-width: 440px; height: 100vh; padding: 25px 10px; margin: 0 auto; justify-self: center; }
 
 .hud-header { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #3a3a3c; padding-bottom: 8px; }
 .hud-label { font-size: 0.65rem; font-weight: bold; color: #818384; letter-spacing: 0.5px; text-align: center; }
