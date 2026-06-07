@@ -1,25 +1,25 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-body { background-color: #121213; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
-.split-viewport { display: flex; width: 100vw; height: 100vh; background-color: #121213; justify-content: flex-start; align-items: center; }
+body { background-color: #121213; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; position: relative; }
 .hidden { display: none !important; }
-.menu-container { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 400px; height: 100vh; padding: 20px; text-align: center; margin: 0 auto; }
+.menu-canvas-deck { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #121213; display: flex; justify-content: center; align-items: center; z-index: 100; }
+.menu-container { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 400px; text-align: center; }
 .menu-title { display: flex; gap: 4px; margin-bottom: 10px; }
-.title-tile { width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; font-size: 1.6rem; font-weight: bold; color: #fff; }
+.title-tile { width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; font-size: 1.6rem; font-weight: bold; color: #fff; border: 2px solid #3a3a3c; background-color: #121213; }
 .menu-subtitle { color: #818384; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 40px; }
 .menu-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; }
-.menu-btn { background-color: #272729; color: #fff; border: 1px solid #3a3a3c; border-radius: 4px; padding: 14px; font-size: 1rem; font-weight: bold; cursor: pointer; width: 100%; }
+.menu-btn { background-color: #272729; color: #fff; border: 1px solid #3a3a3c; border-radius: 4px; padding: 14px; font-size: 1rem; font-weight: bold; cursor: pointer; width: 100%; text-transform: uppercase; }
 .menu-btn:hover:not(.disabled) { background-color: #3a3a3c; }
 .menu-btn.disabled { opacity: 0.4; cursor: not-allowed; }
 .badge { background-color: #2980b9; font-size: 0.6rem; padding: 2px 6px; border-radius: 3px; margin-left: 5px; }
 .screen-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 500; padding: 20px; }
 .popup-box, .shop-box, .death-box { background-color: #1e1e1f; border: 1px solid #3a3a3c; border-radius: 8px; width: 100%; max-width: 400px; padding: 20px; text-align: center; }
 .popup-scroll { max-height: 200px; overflow-y: auto; text-align: left; margin: 15px 0; font-size: 0.85rem; color: #b0b0b5; line-height: 1.4; }
-.popup-scroll p { margin-bottom: 10px; }
 .setting-row { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 15px 0; }
 input[type="text"] { background-color: #121213; border: 1px solid #3a3a3c; color: #fff; padding: 8px; border-radius: 4px; width: 60%; }
-.action-btn { background-color: #538d4e; color: #fff; border: none; padding: 12px; border-radius: 4px; font-weight: bold; width: 100%; cursor: pointer; font-size: 1rem; }
-.danger-btn { background-color: #c0392b; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; }
+.action-btn { background-color: #538d4e; color: #fff; border: none; padding: 12px; border-radius: 4px; font-weight: bold; width: 100%; cursor: pointer; font-size: 1rem; text-transform: uppercase; }
+.danger-btn { background-color: #c0392b; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; }
 .back-btn { margin-top: 20px; background-color: #3a3a3c; }
+.split-viewport { display: flex; width: 100vw; height: 100vh; background-color: #121213; justify-content: flex-start; align-items: center; position: relative; z-index: 10; }
 .arena-gameplay-panel { display: flex; flex-direction: column; justify-content: space-between; align-items: center; flex: 1; height: 100vh; padding: 20px 10px; max-width: 420px; margin: 0 auto; }
 .hud-header { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #3a3a3c; padding-bottom: 8px; }
 .hud-label { font-size: 0.65rem; font-weight: bold; color: #818384; letter-spacing: 0.5px; text-align: center; }
