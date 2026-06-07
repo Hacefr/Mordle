@@ -7,7 +7,7 @@ let chickenModeActive = false;
 document.addEventListener('DOMContentLoaded', () => {
     // Cache absolute screen overlays
     screenAlpha = document.getElementById('alpha-popup');
-    screenMenuDeck = document.getElementById('menu-deck-wrapper');
+    screenMenuDeck = document.getElementById('main-menu'); // Maps directly to root menu wrapper
     screenGame = document.getElementById('game-arena');
     screenDeath = document.getElementById('death-screen');
 
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Structural layout screen toggler
 export function showScreen(screenToShow) {
-    // Hide sub-screens
     [screenMenu, screenIndex, screenSettings].forEach(s => { if (s) s.classList.add('hidden'); });
     
     if (screenToShow === screenGame) {
