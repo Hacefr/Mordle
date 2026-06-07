@@ -1,4 +1,4 @@
-import { gameState, renderActiveGuessRow, processGuessSubmission } from './chaos.js';
+import { gameState, renderActiveGuessRow, processGuessSubmission } from './chaos2.js';
 import { isSymbolActive, triggerSymbolScramble, verifyInputLegality } from './entities.js';
 
 // Bind keyboard listeners to physical keys and screen button arrays
@@ -17,10 +17,10 @@ export function setupKeyboardListeners() {
 function handleInputPipeline(key) {
     if (gameState.isRoundOver || gameState.isRunDead) return;
     
-    // 👁️ SWEEPER INTERCEPTOR VETO: Blocks typing and inflicts penalty if active
+    // 👁️ SWEEPER PORTAL VETO: Blocks typing and inflicts time penalty if active
     if (!verifyInputLegality()) return;
 
-    // 💥 SYMBOL INTERCEPTOR VETO: Scrambles key assignments if active
+    // 💥 SYMBOL SCRAMBLE VETO: Re-maps keys if active
     const targetKey = isSymbolActive() ? triggerSymbolScramble(key) : key.toUpperCase();
 
     if (targetKey === 'BACKSPACE') {
