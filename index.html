@@ -3,144 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mordle: Slight Type</title>
+    <title>Mordle: Slight Type - Operator Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- IN-SITE NOTIFICATION SYSTEM -->
+    <!-- IN-SITE NOTIFICATION BANNER CONTAINER -->
     <div id="toast-container"></div>
 
-    <!-- 👁️ SWEEPER "DO NOT TYPE" FULLSCREEN OVERLAY WARNING -->
-    <div id="sweeper-overlay" class="hazard-overlay hidden">
-        <div class="sweeper-content">
-            <img src="./assets/sprites/sweeper.png" id="sweeper-sprite" alt="SWEEPER ACCESSED">
-            <h1 class="warning-text flash">DO NOT TYPE</h1>
+    <!-- ⚠️ "SUBJECT TO CHANGE" ACTIVE DEVELOPMENT POP-UP MODAL -->
+    <div id="dev-warning-modal" class="screen-overlay">
+        <div class="modal-box warning-box">
+            <h2 class="warning-title">⚠️ NOTICE TO SYSTEM OPERATORS</h2>
+            <p class="modal-text">Mordle: Slight Type is in active development. Mechanics, entity behavioral profiles, balances, and asset layouts are subject to sudden shifts in upcoming patches.</p>
+            <button id="btn-close-warning" class="action-btn start-btn">Acknowledge Link</button>
         </div>
     </div>
 
-    <!-- ☠️ NULLSCAPE-STYLE DEATH SCREEN -->
+    <!-- 🏠 MAIN MENU LAYER (Wordle Aesthetics with Slight Type Chaos Hooks) -->
+    <div id="main-menu" class="menu-container">
+        <h1 class="menu-wordle-title">MORDLE</h1>
+        <p class="menu-subtitle">Slight Type Overhaul Build</p>
+        
+        <div class="menu-buttons">
+            <button class="menu-btn" id="btn-start-run">Play Modified Mode</button>
+            <button class="menu-btn" id="btn-open-index">Entity Index</button>
+            <button class="menu-btn" id="btn-open-settings">Settings & Modifiers</button>
+        </div>
+        
+        <div class="menu-footer">
+            <span id="easter-egg-indicator" class="hidden">🐔 CHICKEN MODE ACTIVE</span>
+        </div>
+    </div>
+
+    <!-- 📖 THE ENTITY INDEX (Nullscape Data Log Profiles) -->
+    <div id="index-screen" class="menu-container hidden">
+        <h2 class="screen-title">ENTITY DATABASE</h2>
+        <div class="index-grid">
+            <div class="index-card">
+                <img src="./assets/sprites/symbol.png" alt="SYMBOL">
+                <h3>SYMBOL</h3>
+                <p>Glitch Class. Disrupts signal arrays to dynamically scramble physical hardware keystrokes.</p>
+            </div>
+            <div class="index-card">
+                <img src="./assets/sprites/sweeper.png" alt="SWEEPER">
+                <h3>SWEEPER</h3>
+                <p>Observer Class. Halts operations with a strict blind scanning cycle. Do not input values.</p>
+            </div>
+            <div class="index-card locked-card">
+                <div class="silhouette">?</div>
+                <h3>ANOMALY V3</h3>
+                <p>Data corrupted. Upcoming entity core currently being engineered for future update patch.</p>
+            </div>
+        </div>
+        <button class="menu-btn back-btn">Return to Menu</button>
+    </div>
+
+    <!-- ⚙️ SETTINGS SCREEN & LEGACY RUN TOGGLES -->
+    <div id="settings-screen" class="menu-container hidden">
+        <h2 class="screen-title">SYSTEM PREFERENCES</h2>
+        <div class="setting-row">
+            <label for="toggle-legacy">Legacy Run Modifier (? Tiles):</label>
+            <input type="checkbox" id="toggle-legacy">
+        </div>
+        <p class="setting-desc">Enabling Legacy Mode locks all letter tiles behind blind '?' blocks from Wave 1 onwards.</p>
+        
+        <div class="setting-row" style="margin-top: 20px;">
+            <label for="easter-egg-input">Enter Matrix Terminal Code:</label>
+            <input type="text" id="easter-egg-input" placeholder="Type secret key...">
+        </div>
+        
+        <button class="menu-btn back-btn">Return to Menu</button>
+    </div>
+
+    <!-- ☠️ RUN TERMINATION DEATH SCREEN -->
     <div id="death-screen" class="screen-overlay hidden">
         <div class="death-box">
-            <h1 class="death-title glitch-text">RUN TERMINATED</h1>
-            <p class="death-subtitle">The system has collapsed.</p>
+            <h1 class="death-title">RUN TERMINATED</h1>
+            <p class="death-subtitle">The typing mainframe has imploded.</p>
             <div class="death-stats">
-                <div class="stat-line">Max Level Reached: <span id="final-level">0</span></div>
-                <div class="stat-line">Total Wins: <span id="final-wins">0</span></div>
-                <div class="stat-line">Total Coins Earned: <span id="final-coins-total">0</span></div>
+                <div class="stat-line">Max Wave Survived: <span id="final-level">0</span></div>
+                <div class="stat-line">Total Clear Log: <span id="final-wins">0</span></div>
+                <div class="stat-line">MRD Tokens Amassed: <span id="final-coins-total">0</span></div>
             </div>
             <button id="btn-restart" class="action-btn">Initialize Respawn</button>
-            <button id="btn-quit" class="action-btn return-btn">Return to Root Menu</button>
+            <button id="btn-quit" class="action-btn return-btn">Exit to Main Menu</button>
         </div>
     </div>
 
-    <!-- 🪙 MRD COIN INTERMISSION SHOP SCREEN -->
+    <!-- 🪙 INTERMISSION MATRIX MARKETPLACE STORE -->
     <div id="shop-screen" class="screen-overlay hidden">
         <div class="shop-box">
             <h1 class="shop-title">MATRIX MARKETPLACE</h1>
-            <p class="shop-subtitle">Spend your MRD Coins before the next level begins.</p>
-            <div class="wallet-display">Wallet: <span id="shop-wallet">0</span> MRD</div>
+            <p class="shop-subtitle">Liquidate tokens for defensive countermeasures.</p>
+            <div class="wallet-display">Available Balance: <span id="shop-wallet">0</span> MRD</div>
             
             <div class="shop-items">
                 <div class="shop-card" id="buy-time">
                     <h3>Time Stabilizer (+30s)</h3>
                     <p>Inject critical backup seconds into the countdown clock.</p>
-                    <button class="shop-btn">Cost: 10 MRD</button>
+                    <button class="shop-btn">10 MRD</button>
                 </div>
                 <div class="shop-card" id="buy-symbol-shield">
                     <h3>Anti-Symbol Firewall</h3>
                     <p>Blocks SYMBOL from shuffling keys next round.</p>
-                    <button class="shop-btn">Cost: 15 MRD</button>
+                    <button class="shop-btn">15 MRD</button>
                 </div>
                 <div class="shop-card" id="buy-sweeper-radar">
                     <h3>Sweeper Decompiler</h3>
                     <p>Disables the Operator Sweeper attack next round.</p>
-                    <button class="shop-btn">Cost: 15 MRD</button>
-                </div>
-                <div class="shop-card" id="buy-lens">
-                    <h3>Lens Matrix Matrix</h3>
-                    <p>Restores tile letters on blind question-mark levels.</p>
-                    <button class="shop-btn">Cost: 20 MRD</button>
+                    <button class="shop-btn">15 MRD</button>
                 </div>
             </div>
             
-            <button id="btn-next-level" class="action-btn start-btn">Begin Next Wave</button>
+            <button id="btn-next-level" class="action-btn start-btn">Initialize Next Wave</button>
         </div>
     </div>
 
-    <!-- 🕹️ MAIN GAMEPLAY INTERFACE CONTAINER -->
-    <div class="game-wrapper" id="game-arena">
-        <header class="hud-header">
-            <div class="hud-left">
-                <div class="hud-label">WAVE</div>
-                <div id="hud-level" class="hud-value">01</div>
+    <!-- 🕹️ SPLIT-SCREEN REAL-TIME ARENA LAYOUT -->
+    <div class="split-viewport hidden" id="game-arena">
+        
+        <!-- 📡 LEFT SIDE: TRANSMISSION PORTRAIT MONITOR PANEL (Operator System style) -->
+        <div id="transmission-feed" class="portrait-feed hidden-feed">
+            <div class="feed-header">
+                <span class="live-dot"></span> LIVE TRANSMISSION
             </div>
-            
-            <div class="hud-center">
-                <div class="hud-label">TIMER</div>
-                <div id="hud-timer" class="hud-value timer-normal">02:00</div>
+            <div class="feed-canvas">
+                <!-- Entities slide inside this boundary frame dynamically -->
+                <img src="./assets/sprites/sweeper.png" id="boss-portrait-img" class="feed-sprite" alt="">
             </div>
-            
-            <div class="hud-right">
-                <div class="hud-label">WALLET</div>
-                <div id="hud-wallet" class="hud-value coin-text">000 MRD</div>
-            </div>
-        </header>
-
-        <!-- ANAGRAM LETTER GIVENS BAR -->
-        <div class="scramble-container">
-            <div class="hud-label">LETTERS GIVEN:</div>
-            <div id="scramble-letters" class="scramble-display">-----</div>
+            <div class="feed-banner" id="boss-warning-text">THREAT DETECTED</div>
         </div>
 
-        <!-- ACTIVE ENTITY HUD WARNER -->
-        <div id="active-boss-hud" class="boss-banner hidden">
-            <img src="./assets/sprites/symbol.png" class="mini-boss-sprite" id="symbol-hud-icon" alt="">
-            <span id="boss-warning-text">SYMBOL INTERFERENCE DETECTED</span>
+        <!-- 🧩 RIGHT SIDE: BALANCED WORDLE ARENA CANVAS -->
+        <div class="main-puzzle-column">
+            <header class="wordle-hud">
+                <button id="btn-home" class="hud-home-btn">🏠 Exit</button>
+                <div class="hud-metric">WAVE: <span id="hud-level">01</span></div>
+                <div class="hud-metric" id="hud-timer">02:00</div>
+                <div class="hud-metric coin-text"><span id="hud-wallet">0</span> MRD</div>
+            </header>
+
+            <div class="scramble-row">
+                <span class="hud-label">ANAGRAM MATRICES GIVEN:</span>
+                <div id="scramble-letters" class="scramble-tokens">-----</div>
+            </div>
+
+            <div id="board-container"></div>
+
+            <div id="keyboard-container">
+                <div class="keyboard-row">
+                    <button class="key" data-key="q">Q</button>
+                    <button class="key" data-key="w">W</button>
+                    <button class="key" data-key="e">E</button>
+                    <button class="key" data-key="r">R</button>
+                    <button class="key" data-key="t">T</button>
+                    <button class="key" data-key="y">Y</button>
+                    <button class="key" data-key="u">U</button>
+                    <button class="key" data-key="i">I</button>
+                    <button class="key" data-key="o">O</button>
+                    <button class="key" data-key="p">P</button>
+                </div>
+                <div class="keyboard-row">
+                    <button class="key" data-key="a">A</button>
+                    <button class="key" data-key="s">S</button>
+                    <button class="key" data-key="d">D</button>
+                    <button class="key" data-key="f">F</button>
+                    <button class="key" data-key="g">G</button>
+                    <button class="key" data-key="h">H</button>
+                    <button class="key" data-key="j">J</button>
+                    <button class="key" data-key="k">K</button>
+                    <button class="key" data-key="l">L</button>
+                </div>
+                <div class="keyboard-row">
+                    <button class="key key-wide" data-key="Enter">ENTER</button>
+                    <button class="key" data-key="z">Z</button>
+                    <button class="key" data-key="x">X</button>
+                    <button class="key" data-key="c">C</button>
+                    <button class="key" data-key="v">V</button>
+                    <button class="key" data-key="b">B</button>
+                    <button class="key" data-key="n">N</button>
+                    <button class="key" data-key="m">M</button>
+                    <button class="key key-wide" data-key="Backspace">⌫</button>
+                </div>
+            </div>
         </div>
 
-        <!-- THE BOARD GRID CONTAINER -->
-        <div id="board-container"></div>
-
-        <!-- PHYSICAL INPUT SYSTEM -->
-        <div id="keyboard-container">
-            <div class="keyboard-row">
-                <button class="key" data-key="q">Q</button>
-                <button class="key" data-key="w">W</button>
-                <button class="key" data-key="e">E</button>
-                <button class="key" data-key="r">R</button>
-                <button class="key" data-key="t">T</button>
-                <button class="key" data-key="y">Y</button>
-                <button class="key" data-key="u">U</button>
-                <button class="key" data-key="i">I</button>
-                <button class="key" data-key="o">O</button>
-                <button class="key" data-key="p">P</button>
-            </div>
-            <div class="keyboard-row">
-                <button class="key" data-key="a">A</button>
-                <button class="key" data-key="s">S</button>
-                <button class="key" data-key="d">D</button>
-                <button class="key" data-key="f">F</button>
-                <button class="key" data-key="g">G</button>
-                <button class="key" data-key="h">H</button>
-                <button class="key" data-key="j">J</button>
-                <button class="key" data-key="k">K</button>
-                <button class="key" data-key="l">L</button>
-            </div>
-            <div class="keyboard-row">
-                <button class="key key-wide" data-key="Enter">ENTER</button>
-                <button class="key" data-key="z">Z</button>
-                <button class="key" data-key="x">X</button>
-                <button class="key" data-key="c">C</button>
-                <button class="key" data-key="v">V</button>
-                <button class="key" data-key="b">B</button>
-                <button class="key" data-key="n">N</button>
-                <button class="key" data-key="m">M</button>
-                <button class="key key-wide" data-key="Backspace">⌫</button>
-            </div>
-        </div>
     </div>
 
-    <!-- CORE SCRIPTS MODULES ARRAYS -->
     <script type="module" src="shop.js"></script>
     <script type="module" src="entities.js"></script>
     <script type="module" src="input.js"></script>
