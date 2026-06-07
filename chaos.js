@@ -7,7 +7,7 @@ let chickenModeActive = false;
 document.addEventListener('DOMContentLoaded', () => {
     // Cache absolute screen overlays
     screenAlpha = document.getElementById('alpha-popup');
-    screenMenuDeck = document.getElementById('main-menu'); // Maps directly to root menu wrapper
+    screenMenuDeck = document.getElementById('menu-deck-wrapper'); // 🎯 CORRECTED TRACKING TARGET
     screenGame = document.getElementById('game-arena');
     screenDeath = document.getElementById('death-screen');
 
@@ -23,11 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Structural layout screen toggler
 export function showScreen(screenToShow) {
+    // Hide all sub-screens out of view first
     [screenMenu, screenIndex, screenSettings].forEach(s => { if (s) s.classList.add('hidden'); });
     
     if (screenToShow === screenGame) {
-        if (screenMenuDeck) screenMenuDeck.classList.add('hidden');
-        if (screenGame) screenGame.classList.remove('hidden');
+        if (screenMenuDeck) screenMenuDeck.classList.add('hidden'); // Fully clear menu elements space
+        if (screenGame) screenGame.classList.remove('hidden'); // Render combat arena elements only
     } else {
         if (screenGame) screenGame.classList.add('hidden');
         if (screenMenuDeck) screenMenuDeck.classList.remove('hidden');
