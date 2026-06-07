@@ -1,37 +1,49 @@
 import { setupKeyboardListeners } from './input.js';
 import { setupGameplayEngine, startNewSurvivalRun } from './chaos2.js';
 
-let screenAlpha, screenMenu, screenIndex, screenSettings, screenGame, screenDeath;
+let screenAlpha, screenMenuDeck, screenMenu, screenIndex, screenSettings, screenGame, screenDeath;
 let chickenModeActive = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Cache screen overlay wrappers
+    // Cache absolute screen overlays
     screenAlpha = document.getElementById('alpha-popup');
+    screenMenuDeck = document.getElementById('menu-deck-wrapper');
+    screenGame = document.getElementById('game-arena');
+    screenDeath = document.getElementById('death-screen');
+
+    // Cache nested menu screens
     screenMenu = document.getElementById('main-menu');
     screenIndex = document.getElementById('index-screen');
     screenSettings = document.getElementById('settings-screen');
-    screenGame = document.getElementById('game-arena');
-    screenDeath = document.getElementById('death-screen');
 
     setupMenuRoutingEvents();
     setupKeyboardListeners();
     setupGameplayEngine();
 });
 
-// Switch view screen layers safely
+// Structural layout screen toggler
 export function showScreen(screenToShow) {
-    const screens = [screenAlpha, screenMenu, screenIndex, screenSettings, screenGame, screenDeath];
-    screens.forEach(s => { if (s) s.classList.add('hidden'); });
-    if (screenToShow) screenToShow.classList.remove('hidden');
+    // Hide sub-screens
+    [screenMenu, screenIndex, screenSettings].forEach(s => { if (s) s.classList.add('hidden'); });
+    
+    if (screenToShow === screenGame) {
+        if (screenMenuDeck) screenMenuDeck.classList.add('hidden');
+        if (screenGame) screenGame.classList.remove('hidden');
+    } else {
+        if (screenGame) screenGame.classList.add('hidden');
+        if (screenMenuDeck) screenMenuDeck.classList.remove('hidden');
+        if (screenToShow) screenToShow.classList.remove('hidden');
+    }
 }
 
 function setupMenuRoutingEvents() {
     // Dismiss Alpha Notice
     document.getElementById('btn-close-alpha')?.addEventListener('click', () => {
+        if (screenAlpha) screenAlpha.classList.add('hidden');
         showScreen(screenMenu);
     });
 
-    // Main Menu Navigation Connections
+    // Main Menu Trigger Connections
     document.getElementById('btn-start-run')?.addEventListener('click', () => {
         showScreen(screenGame);
         startNewSurvivalRun(chickenModeActive);
@@ -45,7 +57,7 @@ function setupMenuRoutingEvents() {
         showScreen(screenSettings);
     });
 
-    // Sub-screen back button mappings
+    // Return to main links
     document.querySelectorAll('.back-btn').forEach(btn => {
         btn.addEventListener('click', () => showScreen(screenMenu));
     });
@@ -56,10 +68,11 @@ function setupMenuRoutingEvents() {
     });
     
     document.getElementById('btn-quit')?.addEventListener('click', () => {
+        if (screenDeath) screenDeath.classList.add('hidden');
         showScreen(screenMenu);
     });
 
-    // 🐥 EASTER EGG OVERRIDE TRACKER
+    // 🐥 SECRET TERMINAL OVERRIDE KEY WATCHER
     const easterEggInput = document.getElementById('easter-egg-input');
     easterEggInput?.addEventListener('input', (e) => {
         if (e.target.value.toLowerCase() === 'chick') {
@@ -76,7 +89,6 @@ function setupMenuRoutingEvents() {
         }
     });
 
-    // Purge statistics button
     document.getElementById('btn-reset-data')?.addEventListener('click', () => {
         if (confirm("Are you sure you want to purge terminal parameters?")) {
             alert("Terminal cache cleared successfully.");
