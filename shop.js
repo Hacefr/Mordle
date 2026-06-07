@@ -1,6 +1,9 @@
 import { gameState, fetchAndLoadWave, adjustTimerPool, updateWalletDisplays } from './chaos2.js';
 
-const sfxPurchase = new Audio('./assets/audio/purchase.mp3');
+let sfxPurchase;
+try {
+    sfxPurchase = new Audio('./assets/audio/purchase.mp3');
+} catch (e) { console.warn("Purchase sound omitted."); }
 
 let activeUpgrades = { symbol_shield: false, sweeper_radar: false };
 const ITEM_PRICES = { time: 10, symbol_shield: 15, sweeper_radar: 15 };
@@ -48,8 +51,10 @@ function executeItemPurchaseTransaction(itemKey, successCallback) {
         gameState.mrdWallet -= cost;
         updateWalletDisplays();
         try {
-            sfxPurchase.currentTime = 0;
-            sfxPurchase.play();
+            if (sfxPurchase) {
+                sfxPurchase.currentTime = 0;
+                sfxPurchase.play().catch(() => {});
+            }
         } catch(e) {}
         successCallback();
     }
